@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GrocerCustomerRepository extends JpaRepository<GrocerCustomer, Long> {
     boolean existsByCustomerId(Long customerId);
-    Customer findByCustomerId(Long customerId);
+
 }
