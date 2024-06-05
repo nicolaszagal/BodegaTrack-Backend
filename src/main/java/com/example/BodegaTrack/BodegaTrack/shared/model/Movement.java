@@ -28,6 +28,9 @@ public class Movement {
     @Column(name = "cost", nullable = false)
     private Double cost;
 
+    @Column(name="type", nullable = false)
+    private String type;
+
     @Column(name = "interest", nullable = false)
     private Double interest;
 

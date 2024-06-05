@@ -5,6 +5,5 @@ import com.example.BodegaTrack.BodegaTrack.grocer.model.GrocerCustomer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GrocerCustomerRepository extends JpaRepository<GrocerCustomer, Long> {
-    boolean existsByCustomerId(Long customerId);
-
+    boolean existsGrocerById(Long customerId);
 }

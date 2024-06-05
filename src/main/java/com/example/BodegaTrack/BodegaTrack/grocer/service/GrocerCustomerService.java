@@ -1,10 +1,13 @@
 package com.example.BodegaTrack.BodegaTrack.grocer.service;
 
-import com.example.BodegaTrack.BodegaTrack.customer.model.Customer;
-import com.example.BodegaTrack.BodegaTrack.grocer.model.Grocer;
 import com.example.BodegaTrack.BodegaTrack.grocer.model.GrocerCustomer;
 
+import java.util.List;
+
 public interface GrocerCustomerService {
-    Grocer createCustomerGrocer(GrocerCustomer grocerCustomer);
-    Customer findByCustomerId(Long customerId);
+    GrocerCustomer createGrocerCustomer(GrocerCustomer grocerCustomer);
+    GrocerCustomer getGrocerCustomerById(long id);
+    List<GrocerCustomer> getAllGrocerCustomers();
+    GrocerCustomer updateGrocerCustomer(Long id, GrocerCustomer grocerCustomerDetails);
+    void deleteGrocerCustomer(Long id);
 }
