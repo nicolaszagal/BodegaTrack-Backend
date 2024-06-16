@@ -1,17 +1,17 @@
-package com.example.BodegaTrack.BodegaTrack.shared.service.impl;
+package com.example.BodegaTrack.BodegaTrack.shared.components.service.impl;
 
-import com.example.BodegaTrack.BodegaTrack.shared.exception.ResourceNotFoundException;
-import com.example.BodegaTrack.BodegaTrack.shared.exception.ValidationException;
-import com.example.BodegaTrack.BodegaTrack.shared.model.Movement;
-import com.example.BodegaTrack.BodegaTrack.shared.repository.MovementRepository;
-import com.example.BodegaTrack.BodegaTrack.shared.service.MovementService;
+import com.example.BodegaTrack.BodegaTrack.shared.components.service.MovementService;
+import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ResourceNotFoundException;
+import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ValidationException;
+import com.example.BodegaTrack.BodegaTrack.shared.components.model.Movement;
+import com.example.BodegaTrack.BodegaTrack.shared.components.repository.MovementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MovementServiceImpl implements MovementService{
+public class MovementServiceImpl implements MovementService {
     
     @Autowired
     private MovementRepository movementRepository;

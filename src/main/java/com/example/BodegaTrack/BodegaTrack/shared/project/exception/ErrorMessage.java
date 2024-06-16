@@ -1,4 +1,4 @@
-package com.example.BodegaTrack.BodegaTrack.shared.exception;
+package com.example.BodegaTrack.BodegaTrack.shared.project.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

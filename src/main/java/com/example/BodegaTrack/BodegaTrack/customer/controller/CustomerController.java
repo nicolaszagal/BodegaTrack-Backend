@@ -2,6 +2,7 @@ package com.example.BodegaTrack.BodegaTrack.customer.controller;
 
 import com.example.BodegaTrack.BodegaTrack.customer.model.Customer;
 import com.example.BodegaTrack.BodegaTrack.customer.service.CustomerService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/customers")
+@RequestMapping("api/v1/customers")
+@AllArgsConstructor
 public class CustomerController {
 
     @Autowired

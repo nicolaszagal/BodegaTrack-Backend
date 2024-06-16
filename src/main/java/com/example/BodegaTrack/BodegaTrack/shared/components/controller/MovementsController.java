@@ -1,7 +1,7 @@
-package com.example.BodegaTrack.BodegaTrack.shared.controller;
+package com.example.BodegaTrack.BodegaTrack.shared.components.controller;
 
-import com.example.BodegaTrack.BodegaTrack.shared.model.Movement;
-import com.example.BodegaTrack.BodegaTrack.shared.service.MovementService;
+import com.example.BodegaTrack.BodegaTrack.shared.components.model.Movement;
+import com.example.BodegaTrack.BodegaTrack.shared.components.service.MovementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

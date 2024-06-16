@@ -1,6 +1,6 @@
-package com.example.BodegaTrack.BodegaTrack.shared.service;
+package com.example.BodegaTrack.BodegaTrack.shared.components.service;
 
-import com.example.BodegaTrack.BodegaTrack.shared.model.Movement;
+import com.example.BodegaTrack.BodegaTrack.shared.components.model.Movement;
 
 import java.util.List;
 

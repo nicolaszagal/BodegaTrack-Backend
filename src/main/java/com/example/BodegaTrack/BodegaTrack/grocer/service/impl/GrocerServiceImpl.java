@@ -3,8 +3,8 @@ package com.example.BodegaTrack.BodegaTrack.grocer.service.impl;
 import com.example.BodegaTrack.BodegaTrack.grocer.model.Grocer;
 import com.example.BodegaTrack.BodegaTrack.grocer.repository.GrocerRepository;
 import com.example.BodegaTrack.BodegaTrack.grocer.service.GrocerService;
-import com.example.BodegaTrack.BodegaTrack.shared.exception.ResourceNotFoundException;
-import com.example.BodegaTrack.BodegaTrack.shared.exception.ValidationException;
+import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ResourceNotFoundException;
+import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

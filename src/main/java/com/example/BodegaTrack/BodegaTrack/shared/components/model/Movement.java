@@ -1,4 +1,4 @@
-package com.example.BodegaTrack.BodegaTrack.shared.model;
+package com.example.BodegaTrack.BodegaTrack.shared.components.model;
 
 import com.example.BodegaTrack.BodegaTrack.customer.model.Customer;
 import jakarta.persistence.*;

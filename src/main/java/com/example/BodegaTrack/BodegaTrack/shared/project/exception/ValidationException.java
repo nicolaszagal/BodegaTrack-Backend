@@ -1,4 +1,4 @@
-package com.example.BodegaTrack.BodegaTrack.shared.exception;
+package com.example.BodegaTrack.BodegaTrack.shared.project.exception;
 
 public class ValidationException extends  RuntimeException{
     public ValidationException(String message) {
