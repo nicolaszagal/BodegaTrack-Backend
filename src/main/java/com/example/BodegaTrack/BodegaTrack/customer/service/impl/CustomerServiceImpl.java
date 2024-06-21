@@ -42,10 +42,10 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer updateCustomer(Long id, Customer customerDetails) {
         Customer customer = getCustomerById(id);
         customer.setName(customerDetails.getName());
-        customer.setLastname(customerDetails.getName());
-        customer.setEmail(customerDetails.getName());
-        customer.setPhone(customerDetails.getName());
-        customer.setPassword(customerDetails.getName());
+        customer.setLastname(customerDetails.getLastname());
+        customer.setEmail(customerDetails.getEmail());
+        customer.setPhone(customerDetails.getPhone());
+        customer.setPassword(customerDetails.getPassword());
         return customerRepository.save(customer);
     }
 

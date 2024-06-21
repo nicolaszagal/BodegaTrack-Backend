@@ -1,7 +1,7 @@
-package com.example.BodegaTrack.BodegaTrack.shared.components.controller;
+package com.example.BodegaTrack.BodegaTrack.shared.components.movements.controller;
 
-import com.example.BodegaTrack.BodegaTrack.shared.components.model.Movement;
-import com.example.BodegaTrack.BodegaTrack.shared.components.service.MovementService;
+import com.example.BodegaTrack.BodegaTrack.shared.components.movements.model.Movement;
+import com.example.BodegaTrack.BodegaTrack.shared.components.movements.service.MovementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/movements")
+@RequestMapping("/api/v1/movements")
 public class MovementsController {
 
     @Autowired

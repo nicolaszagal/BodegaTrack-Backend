@@ -1,10 +1,10 @@
-package com.example.BodegaTrack.BodegaTrack.shared.components.service.impl;
+package com.example.BodegaTrack.BodegaTrack.shared.components.movements.service.impl;
 
-import com.example.BodegaTrack.BodegaTrack.shared.components.service.MovementService;
+import com.example.BodegaTrack.BodegaTrack.shared.components.movements.model.Movement;
+import com.example.BodegaTrack.BodegaTrack.shared.components.movements.repository.MovementRepository;
+import com.example.BodegaTrack.BodegaTrack.shared.components.movements.service.MovementService;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ResourceNotFoundException;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ValidationException;
-import com.example.BodegaTrack.BodegaTrack.shared.components.model.Movement;
-import com.example.BodegaTrack.BodegaTrack.shared.components.repository.MovementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

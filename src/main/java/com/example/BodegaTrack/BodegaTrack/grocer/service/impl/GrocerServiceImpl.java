@@ -18,14 +18,10 @@ public class GrocerServiceImpl implements GrocerService {
 
     @Override
     public Grocer createGrocer(Grocer grocer) {
-        existsGrocerByEmail(grocer);
-
+        if (grocerRepository.existsGrocerByEmail(grocer.getEmail())) {
+            throw new ValidationException("Ya existe un negocio registrado con este email");
+        }
         return grocerRepository.save(grocer);
-    }
-
-    private void existsGrocerByEmail(Grocer grocer){
-        grocerRepository.existsGrocerByEmail(grocer.getEmail());
-        throw new ValidationException("Ya existe un negocio registrado con este email");
     }
 
     @Override
