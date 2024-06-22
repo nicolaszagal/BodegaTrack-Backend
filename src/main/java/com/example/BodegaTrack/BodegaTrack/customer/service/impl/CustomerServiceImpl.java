@@ -3,6 +3,8 @@ package com.example.BodegaTrack.BodegaTrack.customer.service.impl;
 import com.example.BodegaTrack.BodegaTrack.customer.model.Customer;
 import com.example.BodegaTrack.BodegaTrack.customer.repository.CustomerRepository;
 import com.example.BodegaTrack.BodegaTrack.customer.service.CustomerService;
+import com.example.BodegaTrack.BodegaTrack.grocer.model.Grocer;
+import com.example.BodegaTrack.BodegaTrack.grocer.repository.GrocerRepository;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ResourceNotFoundException;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,22 +14,25 @@ import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
+
+    @Autowired
+    private GrocerRepository grocerRepository;
+
     @Autowired
     private CustomerRepository customerRepository;
 
     @Override
     public Customer createCustomer(Customer customer) {
-        existsCustomerByEmail(customer);
+        checkEmailExists(customer.getEmail());
 
         return customerRepository.save(customer);
     }
 
-    private void existsCustomerByEmail(Customer customer) {
-        if (customerRepository.existsCustomerByEmail(customer.getEmail())){
-            throw  new ValidationException("Ya existe un cliente registrado con este email");
+    private void checkEmailExists(String email) {
+        if (customerRepository.existsCustomerByEmail(email) || grocerRepository.existsGrocerByEmail(email)) {
+            throw new ValidationException("Ya existe un usuario registrado con este email");
         }
     }
-
     @Override
     public Customer getCustomerById(Long id) {
         return customerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("No se encontro ningun cliente con el id:" + id));

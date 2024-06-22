@@ -1,5 +1,6 @@
 package com.example.BodegaTrack.BodegaTrack.grocer.service.impl;
 
+import com.example.BodegaTrack.BodegaTrack.customer.repository.CustomerRepository;
 import com.example.BodegaTrack.BodegaTrack.grocer.model.Grocer;
 import com.example.BodegaTrack.BodegaTrack.grocer.repository.GrocerRepository;
 import com.example.BodegaTrack.BodegaTrack.grocer.service.GrocerService;
@@ -16,12 +17,20 @@ public class GrocerServiceImpl implements GrocerService {
     @Autowired
     private GrocerRepository grocerRepository;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
     @Override
     public Grocer createGrocer(Grocer grocer) {
-        if (grocerRepository.existsGrocerByEmail(grocer.getEmail())) {
-            throw new ValidationException("Ya existe un negocio registrado con este email");
-        }
+        checkEmailExists(grocer.getEmail());
+
         return grocerRepository.save(grocer);
+    }
+
+    private void checkEmailExists(String email) {
+        if (grocerRepository.existsGrocerByEmail(email) || customerRepository.existsCustomerByEmail(email)) {
+            throw new ValidationException("Ya existe un usuario registrado con este email");
+        }
     }
 
     @Override
