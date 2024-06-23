@@ -7,6 +7,7 @@ public class GrocerCustomerResponse {
     private Long id;
     private Long grocerId;
     private Long customerId;
+    private Double credit;
     private String rateType;
     private Double rate;
     private Boolean configDefault;

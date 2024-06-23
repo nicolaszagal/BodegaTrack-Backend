@@ -5,12 +5,14 @@ import com.example.BodegaTrack.BodegaTrack.grocer.repository.GrocerCustomerRepos
 import com.example.BodegaTrack.BodegaTrack.grocer.service.GrocerCustomerService;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ResourceNotFoundException;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ValidationException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class GrocerCustomerServiceImpl implements GrocerCustomerService {
 
     @Autowired
@@ -53,7 +55,10 @@ public class GrocerCustomerServiceImpl implements GrocerCustomerService {
 
     @Override
     public void deleteGrocerCustomer(Long id) {
-        GrocerCustomer grocerCustomer = grocerCustomerRepository.findById(id).orElse(null);
-        grocerCustomerRepository.delete(grocerCustomer);
+        if (grocerCustomerRepository.existsById(id)) {
+            grocerCustomerRepository.deleteById(id);
+        } else {
+            throw new ResourceNotFoundException("GrocerCustomer not found with id " + id);
+        }
     }
 }

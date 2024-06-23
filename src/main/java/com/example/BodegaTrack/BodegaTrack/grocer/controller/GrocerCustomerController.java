@@ -15,8 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/grocer-customers")
-
-
 public class GrocerCustomerController {
 
     @Autowired
@@ -34,6 +32,7 @@ public class GrocerCustomerController {
         GrocerCustomer grocerCustomer = new GrocerCustomer();
         grocerCustomer.setGrocer(grocer);
         grocerCustomer.setCustomer(customer);
+        grocerCustomer.setCredit(request.getCredit());
         grocerCustomer.setRateType(request.getRateType());
         grocerCustomer.setRate(request.getRate());
         grocerCustomer.setConfigDefault(request.getConfigDefault());

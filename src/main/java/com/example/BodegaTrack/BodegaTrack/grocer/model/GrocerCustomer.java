@@ -30,6 +30,9 @@ public class GrocerCustomer {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    @Column(name = "credit", nullable = false)
+    private Double credit;
+    
     @Column(name = "rate_type", nullable = false)
     private String rateType;
 

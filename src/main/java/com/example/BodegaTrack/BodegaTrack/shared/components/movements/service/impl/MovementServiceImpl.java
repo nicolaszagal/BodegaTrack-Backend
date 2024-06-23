@@ -5,12 +5,14 @@ import com.example.BodegaTrack.BodegaTrack.shared.components.movements.repositor
 import com.example.BodegaTrack.BodegaTrack.shared.components.movements.service.MovementService;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ResourceNotFoundException;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ValidationException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class MovementServiceImpl implements MovementService {
     
     @Autowired
