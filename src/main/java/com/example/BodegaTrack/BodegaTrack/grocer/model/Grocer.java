@@ -1,9 +1,14 @@
 package com.example.BodegaTrack.BodegaTrack.grocer.model;
 
+import com.example.BodegaTrack.BodegaTrack.customer.model.Customer;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -29,5 +34,9 @@ public class Grocer {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "grocer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<GrocerCustomer> customers = new ArrayList<>();
 
 }

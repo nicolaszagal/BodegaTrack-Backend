@@ -1,15 +1,12 @@
 package com.example.BodegaTrack.BodegaTrack.grocer.dto.mapper;
 
-
-import com.example.BodegaTrack.BodegaTrack.customer.model.Customer;
-import com.example.BodegaTrack.BodegaTrack.grocer.model.Grocer;
 import lombok.Data;
 
 @Data
 public class GrocerCustomerResponse {
     private Long id;
-    private Grocer grocer;
-    private Customer customer;
+    private Long grocerId;
+    private Long customerId;
     private String rateType;
     private Double rate;
     private Boolean configDefault;

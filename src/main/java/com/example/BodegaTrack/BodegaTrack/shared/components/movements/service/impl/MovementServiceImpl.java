@@ -18,14 +18,7 @@ public class MovementServiceImpl implements MovementService {
 
     @Override
     public Movement createMovement(Movement movement) {
-        existsMovementById(movement);
-
         return movementRepository.save(movement);
-    }
-
-    private void existsMovementById(Movement movement){
-        movementRepository.existsMovementById(movement.getId());
-        throw new ValidationException("Ya existe un negocio registrado con este email");
     }
 
     @Override
@@ -51,8 +44,11 @@ public class MovementServiceImpl implements MovementService {
 
     @Override
     public void deleteMovement(Long id) {
-        Movement movement = getMovementById(id);
-        movementRepository.delete(movement);
+        if (movementRepository.existsById(id)) {
+            movementRepository.deleteById(id);
+        } else {
+            throw new ResourceNotFoundException("Movement not found with id " + id);
+        }
     }
     
 }

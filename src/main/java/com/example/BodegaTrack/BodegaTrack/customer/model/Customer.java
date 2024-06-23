@@ -29,4 +29,5 @@ public class Customer {
 
     @Column(name = "password", nullable = false)
     private String password;
+
 }

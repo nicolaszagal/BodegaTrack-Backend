@@ -30,7 +30,7 @@ public class GrocerCustomerServiceImpl implements GrocerCustomerService {
     }
 
     @Override
-    public GrocerCustomer getGrocerCustomerById(long id) {
+    public GrocerCustomer getGrocerCustomerById(Long id) {
         return grocerCustomerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("No tienes ningun cliente registrado con el id:" + id));
     }
 

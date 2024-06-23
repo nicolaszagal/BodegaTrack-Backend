@@ -6,9 +6,11 @@ import com.example.BodegaTrack.BodegaTrack.grocer.repository.GrocerRepository;
 import com.example.BodegaTrack.BodegaTrack.grocer.service.GrocerService;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ResourceNotFoundException;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ValidationException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.beans.Transient;
 import java.util.List;
 
 @Service
@@ -34,8 +36,13 @@ public class GrocerServiceImpl implements GrocerService {
     }
 
     @Override
+    @Transactional
     public Grocer getGrocerById(Long id) {
-        return grocerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No se encontro ningun bodeguero con el id:" + id));
+        Grocer grocer = grocerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No se encontro ningun bodeguero con el id:" + id));
+
+        grocer.getCustomers().size();
+        return grocer;
     }
 
     @Override

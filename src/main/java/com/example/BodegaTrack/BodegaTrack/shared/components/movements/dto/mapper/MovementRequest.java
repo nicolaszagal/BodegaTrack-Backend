@@ -1,13 +1,11 @@
-package com.example.BodegaTrack.BodegaTrack.shared.components.movements.mapper;
-
-import com.example.BodegaTrack.BodegaTrack.customer.model.Customer;
+package com.example.BodegaTrack.BodegaTrack.shared.components.movements.dto.mapper;
 import lombok.Data;
-
 import java.time.LocalDate;
 
 @Data
 public class MovementRequest {
-    private Customer customer;
+    private Long grocerCustomerId;
+    private Long customerId;
     private String title;
     private Double cost;
     private String type;

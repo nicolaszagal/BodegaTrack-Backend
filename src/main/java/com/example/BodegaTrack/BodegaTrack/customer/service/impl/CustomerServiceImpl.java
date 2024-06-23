@@ -7,6 +7,7 @@ import com.example.BodegaTrack.BodegaTrack.grocer.model.Grocer;
 import com.example.BodegaTrack.BodegaTrack.grocer.repository.GrocerRepository;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ResourceNotFoundException;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ValidationException;
+import jakarta.persistence.PrePersist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,4 +61,5 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = getCustomerById(id);
         customerRepository.delete(customer);
     }
+
 }
