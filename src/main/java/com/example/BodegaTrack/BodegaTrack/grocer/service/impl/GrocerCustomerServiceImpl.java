@@ -5,14 +5,12 @@ import com.example.BodegaTrack.BodegaTrack.grocer.repository.GrocerCustomerRepos
 import com.example.BodegaTrack.BodegaTrack.grocer.service.GrocerCustomerService;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ResourceNotFoundException;
 import com.example.BodegaTrack.BodegaTrack.shared.project.exception.ValidationException;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Transactional
 public class GrocerCustomerServiceImpl implements GrocerCustomerService {
 
     @Autowired
@@ -32,7 +30,7 @@ public class GrocerCustomerServiceImpl implements GrocerCustomerService {
     }
 
     @Override
-    public GrocerCustomer getGrocerCustomerById(Long id) {
+    public GrocerCustomer getGrocerCustomerById(String id) {
         return grocerCustomerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("No tienes ningun cliente registrado con el id:" + id));
     }
 
@@ -42,7 +40,7 @@ public class GrocerCustomerServiceImpl implements GrocerCustomerService {
     }
 
     @Override
-    public GrocerCustomer updateGrocerCustomer(Long id, GrocerCustomer grocerCustomerDetails) {
+    public GrocerCustomer updateGrocerCustomer(String id, GrocerCustomer grocerCustomerDetails) {
         GrocerCustomer grocerCustomer = getGrocerCustomerById(id);
         grocerCustomer.setRateType(grocerCustomerDetails.getRateType());
         grocerCustomer.setRate(grocerCustomerDetails.getRate());
@@ -54,11 +52,8 @@ public class GrocerCustomerServiceImpl implements GrocerCustomerService {
     }
 
     @Override
-    public void deleteGrocerCustomer(Long id) {
-        if (grocerCustomerRepository.existsById(id)) {
-            grocerCustomerRepository.deleteById(id);
-        } else {
-            throw new ResourceNotFoundException("GrocerCustomer not found with id " + id);
-        }
+    public void deleteGrocerCustomer(String id) {
+        GrocerCustomer grocerCustomer = grocerCustomerRepository.findById(id).orElse(null);
+        grocerCustomerRepository.delete(grocerCustomer);
     }
 }

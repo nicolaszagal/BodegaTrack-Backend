@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface GrocerService {
     Grocer createGrocer(Grocer grocer);
-    Grocer getGrocerById(Long id);
+    Grocer getGrocerById(String id);
     List<Grocer> getAllGrocers();
-    Grocer updateGrocer(Long id, Grocer grocerDetails);
-    void deleteGrocer(Long id);
+    Grocer updateGrocer(String id, Grocer grocerDetails);
+    void deleteGrocer(String id);
 }

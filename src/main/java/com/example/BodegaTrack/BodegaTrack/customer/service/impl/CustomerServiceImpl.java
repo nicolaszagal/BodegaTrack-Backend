@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -25,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer createCustomer(Customer customer) {
         checkEmailExists(customer.getEmail());
-
+        customer.setId(generatedUniqueId());
         return customerRepository.save(customer);
     }
 
@@ -34,8 +35,20 @@ public class CustomerServiceImpl implements CustomerService {
             throw new ValidationException("Ya existe un usuario registrado con este email");
         }
     }
+
+    private String generatedUniqueId() {
+        String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder uniqueId = new StringBuilder(6);
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            int index = random.nextInt(alphanumeric.length());
+            uniqueId.append(alphanumeric.charAt(index));
+        }
+        return uniqueId.toString();
+    }
+
     @Override
-    public Customer getCustomerById(Long id) {
+    public Customer getCustomerById(String id) {
         return customerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("No se encontro ningun cliente con el id:" + id));
     }
 
@@ -45,7 +58,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer updateCustomer(Long id, Customer customerDetails) {
+    public Customer updateCustomer(String id, Customer customerDetails) {
         Customer customer = getCustomerById(id);
         customer.setName(customerDetails.getName());
         customer.setLastname(customerDetails.getLastname());
@@ -57,7 +70,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public void deleteCustomer(Long id) {
+    public void deleteCustomer(String id) {
         Customer customer = getCustomerById(id);
         customerRepository.delete(customer);
     }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.beans.Transient;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class GrocerServiceImpl implements GrocerService {
@@ -25,7 +26,7 @@ public class GrocerServiceImpl implements GrocerService {
     @Override
     public Grocer createGrocer(Grocer grocer) {
         checkEmailExists(grocer.getEmail());
-
+        grocer.setId(generatedUniqueId());
         return grocerRepository.save(grocer);
     }
 
@@ -35,9 +36,20 @@ public class GrocerServiceImpl implements GrocerService {
         }
     }
 
+    private String generatedUniqueId() {
+        String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder uniqueId = new StringBuilder(6);
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            int index = random.nextInt(alphanumeric.length());
+            uniqueId.append(alphanumeric.charAt(index));
+        }
+        return uniqueId.toString();
+    }
+
     @Override
     @Transactional
-    public Grocer getGrocerById(Long id) {
+    public Grocer getGrocerById(String id) {
         Grocer grocer = grocerRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No se encontro ningun bodeguero con el id:" + id));
 
@@ -51,7 +63,7 @@ public class GrocerServiceImpl implements GrocerService {
     }
 
     @Override
-    public Grocer updateGrocer(Long id, Grocer grocerDetails) {
+    public Grocer updateGrocer(String id, Grocer grocerDetails) {
         Grocer grocer = getGrocerById(id);
         grocer.setName(grocerDetails.getName());
         grocer.setLastname(grocerDetails.getLastname());
@@ -62,7 +74,7 @@ public class GrocerServiceImpl implements GrocerService {
     }
 
     @Override
-    public void deleteGrocer(Long id) {
+    public void deleteGrocer(String id) {
         Grocer grocer = getGrocerById(id);
         grocerRepository.delete(grocer);
     }

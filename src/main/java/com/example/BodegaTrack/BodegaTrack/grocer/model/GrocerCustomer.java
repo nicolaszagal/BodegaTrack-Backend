@@ -19,7 +19,7 @@ import java.util.List;
 public class GrocerCustomer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "grocer_id")

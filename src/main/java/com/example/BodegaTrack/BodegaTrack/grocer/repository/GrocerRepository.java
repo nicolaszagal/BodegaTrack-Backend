@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface GrocerRepository extends JpaRepository<Grocer, Long> {
+public interface GrocerRepository extends JpaRepository<Grocer, String> {
     boolean existsGrocerByEmail(String email);
     Optional<Grocer> findGrocerByEmail(String email);
 }

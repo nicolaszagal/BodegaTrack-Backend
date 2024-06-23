@@ -22,7 +22,7 @@ public class GrocerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Grocer> getGrocerById(@PathVariable Long id) {
+    public ResponseEntity<Grocer> getGrocerById(@PathVariable String id) {
         Grocer grocer = grocerService.getGrocerById(id);
         return ResponseEntity.ok(grocer);
     }
@@ -34,13 +34,13 @@ public class GrocerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Grocer> updateGrocer(@PathVariable Long id, @RequestBody Grocer grocerDetails) {
+    public ResponseEntity<Grocer> updateGrocer(@PathVariable String id, @RequestBody Grocer grocerDetails) {
         Grocer updatedGrocer = grocerService.updateGrocer(id, grocerDetails);
         return ResponseEntity.ok(updatedGrocer);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteGrocer(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteGrocer(@PathVariable String id) {
         grocerService.deleteGrocer(id);
         return ResponseEntity.noContent().build();
     }

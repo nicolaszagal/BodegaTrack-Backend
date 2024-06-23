@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 @Data
 public class MovementRequest {
-    private Long grocerCustomerId;
-    private Long customerId;
+    private String grocerCustomerId;
+    private String customerId;
     private String title;
     private Double cost;
     private String type;

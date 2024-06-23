@@ -7,8 +7,8 @@ import java.time.LocalDate;
 @Data
 public class MovementResponse {
     private Long id;
-    private Long customerId;
-    private Long grocerCustomerId;
+    private String customerId;
+    private String grocerCustomerId;
     private String title;
     private Double cost;
     private String type;
