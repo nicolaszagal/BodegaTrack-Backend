@@ -1,5 +1,7 @@
 package com.example.BodegaTrack.BodegaTrack.shared.components.movements.dto.mapper;
 import lombok.Data;
+import org.springframework.data.relational.core.sql.In;
+
 import java.time.LocalDate;
 
 @Data
@@ -10,5 +12,6 @@ public class MovementRequest {
     private Double cost;
     private String type;
     private Double interest;
-    private LocalDate movementDate;
+    private Integer dues;
+    private String movementDate;
 }

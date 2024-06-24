@@ -1,6 +1,5 @@
 package com.example.BodegaTrack.BodegaTrack.grocer.model;
 
-import com.example.BodegaTrack.BodegaTrack.customer.model.Customer;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

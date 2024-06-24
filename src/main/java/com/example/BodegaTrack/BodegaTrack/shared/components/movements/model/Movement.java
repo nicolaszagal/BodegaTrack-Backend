@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,11 +34,10 @@ public class Movement {
     @Column(name = "interest", nullable = false)
     private Double interest;
 
-    @Column(name = "movement_date", nullable = false)
-    private LocalDate movementDate;
+    @Column(name = "dues", nullable = false)
+    private Integer dues;
 
-    @PrePersist
-    public void prePersist(){
-        this.movementDate = LocalDate.now();
-    }
+    @Column(name = "movement_date", nullable = false)
+    private String movementDate;
+
 }

@@ -20,6 +20,7 @@ public class MovementServiceImpl implements MovementService {
 
     @Override
     public Movement createMovement(Movement movement) {
+        calculateInterest(movement);
         return movementRepository.save(movement);
     }
 
@@ -41,9 +42,13 @@ public class MovementServiceImpl implements MovementService {
         movement.setType(movementDetails.getType());
         movement.setInterest(movementDetails.getInterest());
         movement.setMovementDate(movementDetails.getMovementDate());
+
+        calculateInterest(movement);
+
         return movementRepository.save(movement);
     }
 
+    @Transactional
     @Override
     public void deleteMovement(Long id) {
         if (movementRepository.existsById(id)) {
@@ -52,5 +57,18 @@ public class MovementServiceImpl implements MovementService {
             throw new ResourceNotFoundException("Movement not found with id " + id);
         }
     }
-    
+
+
+    private void calculateInterest(Movement movement) {
+        double cost = movement.getCost();
+        int dues = movement.getDues();
+        double rate = movement.getGrocerCustomer().getRate();
+        String rateType = movement.getGrocerCustomer().getRateType();
+
+        if ("tasa_efectiva".equals(rateType)) {
+            movement.setInterest((cost * ((dues + rate)/dues)) - cost);
+        } else {
+            movement.setInterest((cost * (1 + (rate / 100))) - cost);
+        }
+    }
 }
