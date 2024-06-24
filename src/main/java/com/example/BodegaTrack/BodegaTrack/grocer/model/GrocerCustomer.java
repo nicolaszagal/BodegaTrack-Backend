@@ -32,7 +32,7 @@ public class GrocerCustomer {
 
     @Column(name = "credit", nullable = false)
     private Double credit;
-    
+
     @Column(name = "rate_type", nullable = false)
     private String rateType;
 
@@ -51,7 +51,21 @@ public class GrocerCustomer {
     @Column(name = "grace_days", nullable = false)
     private Integer graceDays;
 
+    @Column(name = "used_credit", nullable = false)
+    private Double usedCredit;
+
+    @Column(name = "available_credit", nullable = false)
+    private Double availableCredit;
+
     @OneToMany(mappedBy = "grocerCustomer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Movement> movements = new ArrayList<>();
+
+    @PrePersist
+    @PreUpdate
+    private void updateCreditValues() {
+        usedCredit = movements.stream().mapToDouble(Movement::getCost).sum();
+        availableCredit = credit - usedCredit;
+    }
 }
+

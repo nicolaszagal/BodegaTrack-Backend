@@ -1,13 +1,16 @@
 package com.example.BodegaTrack.BodegaTrack.customer.controller;
 
 import com.example.BodegaTrack.BodegaTrack.customer.model.Customer;
+import com.example.BodegaTrack.BodegaTrack.customer.repository.CustomerRepository;
 import com.example.BodegaTrack.BodegaTrack.customer.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/customers")
@@ -16,6 +19,8 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @PostMapping
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
@@ -42,8 +47,18 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Customer> deleteCustomer(@PathVariable String id) {
-        customerService.deleteCustomer(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<?> deleteCustomer(@PathVariable String id) {
+        try {
+            Optional<Customer> customerOptional = customerRepository.findById(id);
+            if (customerOptional.isPresent()){
+                Customer customer = customerOptional.get();
+                customerRepository.delete(customer);
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 }

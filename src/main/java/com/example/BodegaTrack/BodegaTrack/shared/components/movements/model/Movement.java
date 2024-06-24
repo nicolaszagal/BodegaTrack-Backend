@@ -1,6 +1,5 @@
 package com.example.BodegaTrack.BodegaTrack.shared.components.movements.model;
 
-import com.example.BodegaTrack.BodegaTrack.customer.model.Customer;
 import com.example.BodegaTrack.BodegaTrack.grocer.model.GrocerCustomer;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;

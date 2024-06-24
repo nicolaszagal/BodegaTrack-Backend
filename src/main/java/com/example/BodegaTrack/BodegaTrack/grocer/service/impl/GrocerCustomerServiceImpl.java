@@ -20,6 +20,9 @@ public class GrocerCustomerServiceImpl implements GrocerCustomerService {
     public GrocerCustomer createGrocerCustomer(GrocerCustomer grocerCustomer) {
         existsGrocerById(grocerCustomer);
 
+        grocerCustomer.setUsedCredit(0.0);
+        grocerCustomer.setAvailableCredit(grocerCustomer.getCredit());
+
         return grocerCustomerRepository.save(grocerCustomer);
     }
 

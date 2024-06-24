@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="customer")
+@Table(name = "customer")
 public class Customer {
     @Id
     @Column(name = "id", nullable = false, unique = true, length = 6)
@@ -29,5 +29,5 @@ public class Customer {
 
     @Column(name = "password", nullable = false)
     private String password;
-
 }
+
