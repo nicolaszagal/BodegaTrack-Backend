@@ -1,5 +1,7 @@
 package com.example.BodegaTrack.BodegaTrack.grocer.model;
+
 import com.example.BodegaTrack.BodegaTrack.customer.model.Customer;
+import com.example.BodegaTrack.BodegaTrack.grocer.model.Grocer;
 import com.example.BodegaTrack.BodegaTrack.shared.components.movements.model.Movement;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -9,7 +11,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import java.util.List;
 public class GrocerCustomer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "grocer_id")
@@ -59,12 +60,6 @@ public class GrocerCustomer {
     @Column(name = "available_credit", nullable = false)
     private Double availableCredit;
 
-    @Column(name = "minimum_payment", nullable = false)
-    private Double minimumPayment = 0.0;
-
-    @Column(name = "next_due_date", nullable = false)
-    private String nextDueDate;
-
     @OneToMany(mappedBy = "grocerCustomer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Movement> movements = new ArrayList<>();
@@ -75,9 +70,11 @@ public class GrocerCustomer {
         usedCredit = movements.stream().mapToDouble(m -> m.getCost() + m.getInterest()).sum();
         availableCredit = credit - usedCredit;
 
+        // Formatear a dos decimales
         DecimalFormat df = new DecimalFormat("#.##");
         usedCredit = Double.valueOf(df.format(usedCredit));
         availableCredit = Double.valueOf(df.format(availableCredit));
     }
 }
+
 

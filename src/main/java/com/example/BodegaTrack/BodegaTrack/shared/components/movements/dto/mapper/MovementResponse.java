@@ -8,10 +8,11 @@ import java.time.LocalDate;
 public class MovementResponse {
     private Long id;
     private String customerId;
-    private Long grocerCustomerId;
+    private String grocerCustomerId;
     private String title;
     private Double cost;
     private String type;
+    private Integer dues;
     private Double interest;
-    private LocalDate movementDate;
+    private String movementDate;
 }

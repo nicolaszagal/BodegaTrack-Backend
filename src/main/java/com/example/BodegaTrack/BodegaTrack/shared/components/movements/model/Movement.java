@@ -40,10 +40,20 @@ public class Movement {
     private Integer dues;
 
     @Column(name = "movement_date", nullable = false)
-    private LocalDate movementDate;
+    private String movementDate;
 
-    @PrePersist
-    public void prePersist(){
-        this.movementDate = LocalDate.now();
+    private void calculateInterest(Movement movement) {
+        double cost = movement.getCost();
+        int dues = movement.getDues();
+        double rate = movement.getGrocerCustomer().getRate();
+        double exponent = dues / 12;
+        String rateType = movement.getGrocerCustomer().getRateType();
+
+        if ("tasa_efectiva".equals(rateType)) {
+            movement.setInterest((cost * Math.pow((1 + rate), exponent)) - cost);
+        } else {
+            movement.setInterest((cost * (1 + (rate / 100))) - cost);
+        }
     }
+
 }

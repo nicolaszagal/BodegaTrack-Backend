@@ -18,8 +18,10 @@ public class MovementsController {
 
     @Autowired
     private MovementService movementService;
+
     @Autowired
     private GrocerCustomerService grocerCustomerService;
+
     @Autowired
     CustomerService customerService;
 
@@ -32,7 +34,7 @@ public class MovementsController {
         movement.setTitle(request.getTitle());
         movement.setCost(request.getCost());
         movement.setType(request.getType());
-        movement.setInterest(request.getInterest());
+        movement.setDues(request.getDues());
         movement.setMovementDate(request.getMovementDate());
 
         Movement createdMovement = movementService.createMovement(movement);
@@ -41,19 +43,19 @@ public class MovementsController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Movement> getMovementById(@PathVariable Long id) {
-        Movement Movement = movementService.getMovementById(id);
-        return ResponseEntity.ok(Movement);
+        Movement movement = movementService.getMovementById(id);
+        return ResponseEntity.ok(movement);
     }
 
     @GetMapping
     public ResponseEntity<List<Movement>> getAllMovements() {
-        List<Movement> Movements = movementService.getAllMovements();
-        return ResponseEntity.ok(Movements);
+        List<Movement> movements = movementService.getAllMovements();
+        return ResponseEntity.ok(movements);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Movement> updateMovement(@PathVariable Long id, @RequestBody Movement MovementDetails) {
-        Movement updatedMovement = movementService.updateMovement(id, MovementDetails);
+    public ResponseEntity<Movement> updateMovement(@PathVariable Long id, @RequestBody Movement movementDetails) {
+        Movement updatedMovement = movementService.updateMovement(id, movementDetails);
         return ResponseEntity.ok(updatedMovement);
     }
 
@@ -63,3 +65,4 @@ public class MovementsController {
         return ResponseEntity.noContent().build();
     }
 }
+

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class GrocerCustomerResponse {
-    private Long id;
+    private String id;
     private String grocerId;
     private String customerId;
     private Double credit;

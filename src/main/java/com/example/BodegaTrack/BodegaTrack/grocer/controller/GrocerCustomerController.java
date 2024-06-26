@@ -39,15 +39,13 @@ public class GrocerCustomerController {
         grocerCustomer.setDefaultRate(request.getDefaultRate());
         grocerCustomer.setPayDay(request.getPayDay());
         grocerCustomer.setGraceDays(request.getGraceDays());
-        grocerCustomer.setNextDueDate(request.getNextDueDate());
-        grocerCustomer.setMinimumPayment(request.getMinimumPayment());
 
         GrocerCustomer createdGrocerCustomer = grocerCustomerService.createGrocerCustomer(grocerCustomer);
         return ResponseEntity.ok(createdGrocerCustomer);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GrocerCustomer> getGrocerCustomerById(@PathVariable Long id) {
+    public ResponseEntity<GrocerCustomer> getGrocerCustomerById(@PathVariable String id) {
         GrocerCustomer grocerCustomer = grocerCustomerService.getGrocerCustomerById(id);
         return ResponseEntity.ok(grocerCustomer);
     }
@@ -59,13 +57,13 @@ public class GrocerCustomerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<GrocerCustomer> updateGrocerCustomer(@PathVariable Long id, @RequestBody GrocerCustomer grocerCustomerDetails) {
+    public ResponseEntity<GrocerCustomer> updateGrocerCustomer(@PathVariable String id, @RequestBody GrocerCustomer grocerCustomerDetails) {
         GrocerCustomer updatedGrocerCustomer = grocerCustomerService.updateGrocerCustomer(id, grocerCustomerDetails);
         return ResponseEntity.ok(updatedGrocerCustomer);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteGrocerCustomer(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteGrocerCustomer(@PathVariable String id) {
         grocerCustomerService.deleteGrocerCustomer(id);
         return ResponseEntity.noContent().build();
     }
