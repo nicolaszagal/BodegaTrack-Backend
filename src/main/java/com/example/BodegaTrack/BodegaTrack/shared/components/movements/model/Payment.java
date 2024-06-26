@@ -13,8 +13,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "movement")
-public class Movement {
+@Table(name = "payment")
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,26 +24,12 @@ public class Movement {
     @JsonBackReference
     private GrocerCustomer grocerCustomer;
 
-    @Column(name = "title", nullable = false)
-    private String title;
+    @Column(name = "amount", nullable = false)
+    private Double amount;
 
-    @Column(name = "cost", nullable = false)
-    private Double cost;
+    @Column(name = "payment_date", nullable = false)
+    private LocalDate paymentDate;
 
-    @Column(name="type", nullable = false)
-    private String type;
-
-    @Column(name = "interest", nullable = false)
-    private Double interest;
-
-    @Column(name = "dues", nullable = false)
-    private Integer dues;
-
-    @Column(name = "movement_date", nullable = false)
-    private LocalDate movementDate;
-
-    @PrePersist
-    public void prePersist(){
-        this.movementDate = LocalDate.now();
-    }
+    @Column(name = "late_fee", nullable = false)
+    private Double lateFee;
 }

@@ -2,6 +2,7 @@ package com.example.BodegaTrack.BodegaTrack.shared.components.movements.dto.mapp
 
 import lombok.Data;
 
+import java.time.LocalDate;
 
 @Data
 public class MovementResponse {
@@ -12,6 +13,5 @@ public class MovementResponse {
     private Double cost;
     private String type;
     private Double interest;
-    private Integer dues;
-    private String movementDate;
+    private LocalDate movementDate;
 }

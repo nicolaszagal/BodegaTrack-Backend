@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ import java.util.List;
 public class GrocerCustomer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "grocer_id")
@@ -57,15 +59,25 @@ public class GrocerCustomer {
     @Column(name = "available_credit", nullable = false)
     private Double availableCredit;
 
+    @Column(name = "minimum_payment", nullable = false)
+    private Double minimumPayment = 0.0;
+
+    @Column(name = "next_due_date", nullable = false)
+    private String nextDueDate;
+
     @OneToMany(mappedBy = "grocerCustomer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Movement> movements = new ArrayList<>();
 
     @PrePersist
     @PreUpdate
-    private void updateCreditValues() {
-        usedCredit = movements.stream().mapToDouble(Movement::getCost).sum();
+    public void updateCreditValues() {
+        usedCredit = movements.stream().mapToDouble(m -> m.getCost() + m.getInterest()).sum();
         availableCredit = credit - usedCredit;
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        usedCredit = Double.valueOf(df.format(usedCredit));
+        availableCredit = Double.valueOf(df.format(availableCredit));
     }
 }
 

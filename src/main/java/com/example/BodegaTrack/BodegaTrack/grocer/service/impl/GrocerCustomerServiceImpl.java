@@ -33,7 +33,7 @@ public class GrocerCustomerServiceImpl implements GrocerCustomerService {
     }
 
     @Override
-    public GrocerCustomer getGrocerCustomerById(String id) {
+    public GrocerCustomer getGrocerCustomerById(Long id) {
         return grocerCustomerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("No tienes ningun cliente registrado con el id:" + id));
     }
 
@@ -43,7 +43,7 @@ public class GrocerCustomerServiceImpl implements GrocerCustomerService {
     }
 
     @Override
-    public GrocerCustomer updateGrocerCustomer(String id, GrocerCustomer grocerCustomerDetails) {
+    public GrocerCustomer updateGrocerCustomer(Long id, GrocerCustomer grocerCustomerDetails) {
         GrocerCustomer grocerCustomer = getGrocerCustomerById(id);
         grocerCustomer.setRateType(grocerCustomerDetails.getRateType());
         grocerCustomer.setRate(grocerCustomerDetails.getRate());
@@ -55,7 +55,7 @@ public class GrocerCustomerServiceImpl implements GrocerCustomerService {
     }
 
     @Override
-    public void deleteGrocerCustomer(String id) {
+    public void deleteGrocerCustomer(Long id) {
         GrocerCustomer grocerCustomer = grocerCustomerRepository.findById(id).orElse(null);
         grocerCustomerRepository.delete(grocerCustomer);
     }

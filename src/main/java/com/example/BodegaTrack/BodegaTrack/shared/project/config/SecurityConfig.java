@@ -21,7 +21,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable) // Deshabilitar CSRF (solo para desarrollo, no se recomienda en producción)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/v1/login", "/api/v1/customers", "/api/v1/grocers", "/api/v1/grocer-customers", "/api/v1/movements").permitAll()
+                        .requestMatchers("/api/v1/login", "/api/v1/customers", "/api/v1/grocers", "/api/v1/grocer-customers", "/api/v1/movements", "api/v1/payments").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/grocers/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/grocers").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/v1/grocers/**").permitAll()
@@ -38,6 +38,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/v1/movements").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/v1/movements/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/movements/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/payments/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/payments").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/payments/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/payments/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())

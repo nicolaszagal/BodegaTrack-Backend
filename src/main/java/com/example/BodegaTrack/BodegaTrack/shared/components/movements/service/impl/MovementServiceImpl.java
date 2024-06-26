@@ -67,7 +67,7 @@ public class MovementServiceImpl implements MovementService {
         String rateType = movement.getGrocerCustomer().getRateType();
 
         if ("tasa_efectiva".equals(rateType)) {
-            movement.setInterest((cost * Math.pow((1 + rate), exponent)) - cost);
+            movement.setInterest((cost * ((dues + rate)/dues)) - cost);
         } else {
             movement.setInterest((cost * (1 + (rate / 100))) - cost);
         }

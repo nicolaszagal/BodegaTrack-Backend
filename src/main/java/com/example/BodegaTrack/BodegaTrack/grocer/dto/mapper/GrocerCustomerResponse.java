@@ -14,4 +14,6 @@ public class GrocerCustomerResponse {
     private Double defaultRate;
     private Integer payDay;
     private Integer graceDays;
+    private String nextDueDate;
+    private Double minimumPayment;
 }

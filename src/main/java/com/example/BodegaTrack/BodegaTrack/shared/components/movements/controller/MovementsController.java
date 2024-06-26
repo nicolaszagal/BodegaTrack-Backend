@@ -32,9 +32,8 @@ public class MovementsController {
         movement.setTitle(request.getTitle());
         movement.setCost(request.getCost());
         movement.setType(request.getType());
-        movement.setDues(request.getDues());
+        movement.setInterest(request.getInterest());
         movement.setMovementDate(request.getMovementDate());
-
 
         Movement createdMovement = movementService.createMovement(movement);
         return ResponseEntity.ok(createdMovement);
